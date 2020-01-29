@@ -23,12 +23,16 @@ class DORMCP(unittest.TestCase):
     def test_01_DOREQMCP(self):
         self.driver.find_element_by_xpath('//*[@id="btnNewbeneficiary"]').click()
         time.sleep(3)
+        #Registration date
         self.driver.find_element_by_xpath('//*[@id="dpicker1"]').click()
         self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/div/div/select[2]/option[1]').click()
         self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/div/div/select[1]/option[3]').click()
         self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/table/tbody/tr[3]/td[4]/a').click()
 
-        self.driver.find_element_by_css_selector("input[name='NoOfChildren']").click()
+        #No of children
+        self.no_of_children = self.driver.find_elements_by_xpath('//*[@id="NoOfChildren"]')
+        self.no_of_children[0].click()
+
         self.Aadhaar_avaialbilty_data = self.driver.find_elements_by_xpath("//input[@id='BeneficiaryAadharExistVal']")
         time.sleep(3)
         print(self.Aadhaar_avaialbilty_data[3].get_attribute('value'))
@@ -37,7 +41,7 @@ class DORMCP(unittest.TestCase):
         select.select_by_value('5')
 
         self.driver.find_element_by_xpath('//*[@id="txtAlternateNumber"]').click()
-        self.driver.find_element_by_xpath('//*[@id="txtAlternateNumber"]').send_keys('K0129189')
+        self.driver.find_element_by_xpath('//*[@id="txtAlternateNumber"]').send_keys('K0129290')
 
         self.driver.find_element_by_xpath('//*[@id="NameAsInIDCard"]').click()
         self.driver.find_element_by_xpath('//*[@id="NameAsInIDCard"]').send_keys('Shanthala')
@@ -52,12 +56,12 @@ class DORMCP(unittest.TestCase):
         select.select_by_value('5')
 
         self.driver.find_element_by_xpath('//*[@id="txtFatherAlternateNumber"]').click()
-        self.driver.find_element_by_xpath('//*[@id="txtFatherAlternateNumber"]').send_keys('K0127191')
+        self.driver.find_element_by_xpath('//*[@id="txtFatherAlternateNumber"]').send_keys('K0127193')
         self.driver.find_element_by_xpath('//*[@id="FNameAsInIDCard"]').send_keys('Shashikanth')
-        self.driver.find_element_by_xpath('//*[@id="Phone"]').send_keys('9989009895')
+        self.driver.find_element_by_xpath('//*[@id="Phone"]').send_keys('9989009896')
         select1 = Select(self.driver.find_element_by_xpath('//*[@id="Category"]'))
         select1.select_by_index('3')
-        self.driver.find_element_by_xpath('//*[@id="HealthId"]').send_keys('HID7016')
+        self.driver.find_element_by_xpath('//*[@id="HealthId"]').send_keys('HID7026')
 
     # Date of LMP
         self.driver.find_element_by_xpath('//*[@id="dpicker2"]').click()
@@ -91,7 +95,7 @@ class DORMCP(unittest.TestCase):
     ###Temp data
         select.select_by_index('6')
         self.driver.find_element_by_xpath('//*[@id="Pincode"]').click()
-        self.driver.find_element_by_xpath('//*[@id="Pincode"]').send_keys('670647')
+        self.driver.find_element_by_xpath('//*[@id="Pincode"]').send_keys('670648')
 
     # Account Details
         self.driver.find_element_by_xpath('//*[@id="Bank"]').click()
@@ -100,7 +104,7 @@ class DORMCP(unittest.TestCase):
         self.driver.find_element_by_xpath('//*[@id="ifscButton1"]').click()
 
         self.driver.find_element_by_xpath('//*[@id="BankAccountNo"]').click()
-        self.driver.find_element_by_xpath('//*[@id="BankAccountNo"]').send_keys('50998977667102')
+        self.driver.find_element_by_xpath('//*[@id="BankAccountNo"]').send_keys('50998977667103')
 
         self.driver.find_element_by_xpath('//*[@id="txtAccountHoldersName"]').click()
         self.driver.find_element_by_xpath('//*[@id="txtAccountHoldersName"]').send_keys('Shanthala')
@@ -111,13 +115,119 @@ class DORMCP(unittest.TestCase):
 
         self.driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/button[1]').click()
 
-        self.driver.switch_to_alert().accept()
+        self.driver.switch_to.alert.accept()
 
         time.sleep(3)
     # To cancel
     # driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/button[2]').click()
 
     # To check if the form is submitted
+        #element = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/h5')
+        #assert element.text == 'The beneficiary application form is sent for approval'
+
+    def test_02_DORGTMCP(self):
+        self.driver.find_element_by_xpath('//*[@id="btnNewbeneficiary"]').click()
+        time.sleep(3)
+        # Registration date
+        self.driver.find_element_by_xpath('//*[@id="dpicker1"]').click()
+        self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/div/div/select[2]/option[2]').click()
+        self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/div/div/select[1]/option[3]').click()
+        self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/table/tbody/tr[3]/td[4]/a').click()
+
+        # No. of childrens
+        no_of_children = self.driver.find_elements_by_xpath('//*[@id="NoOfChildren"]')
+        no_of_children[0].click()
+
+        Aadhaar_avaialbilty_data = self.driver.find_elements_by_xpath("//input[@id='BeneficiaryAadharExistVal']")
+        time.sleep(3)
+        print(Aadhaar_avaialbilty_data[3].get_attribute('value'))
+        Aadhaar_avaialbilty_data[3].click()
+        select = Select(self.driver.find_element_by_id('beneficiaryAltID'))
+        select.select_by_value('3')
+
+        # Ration card
+        self.driver.find_element_by_xpath('//*[@id="txtAlternateNumber"]').click()
+        self.driver.find_element_by_xpath('//*[@id="txtAlternateNumber"]').send_keys('897566')
+
+        self.driver.find_element_by_xpath('//*[@id="NameAsInIDCard"]').click()
+        self.driver.find_element_by_xpath('//*[@id="NameAsInIDCard"]').send_keys('Jyothi Kundar')
+
+        # Does Husband have aadhar card 'No'
+
+        Father_Aadhaar_data = self.driver.find_elements_by_xpath("//input[@id='FatherAadharExistVal']")
+        time.sleep(3)
+        print(Father_Aadhaar_data[3].get_attribute('value'))
+        Father_Aadhaar_data[3].click()
+        select = Select(self.driver.find_element_by_id('fatherAltID'))
+        select.select_by_value('3')
+        # Voter id
+        self.driver.find_element_by_xpath('//*[@id="txtFatherAlternateNumber"]').click()
+        self.driver.find_element_by_xpath('//*[@id="txtFatherAlternateNumber"]').send_keys('987010')
+        self.driver.find_element_by_xpath('//*[@id="FNameAsInIDCard"]').send_keys('Jitendra Kundar')
+        self.driver.find_element_by_xpath('//*[@id="Phone"]').send_keys('9989019999')
+        select1 = Select(self.driver.find_element_by_xpath('//*[@id="Category"]'))
+        select1.select_by_index('1')
+        self.driver.find_element_by_xpath('//*[@id="HealthId"]').send_keys('HID7174')
+
+        # Date of LMP
+        self.driver.find_element_by_xpath('//*[@id="dpicker2"]').click()
+        self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/div/div/select[2]/option[7]').click()
+        self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/div/div/select[1]/option[1]').click()
+        self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/table/tbody/tr[3]/td[2]/a').click()
+        time.sleep(3)
+
+        # Date of registration of MCP
+
+        self.driver.find_element_by_xpath('//*[@id="dpicker3"]').click()
+        self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/div/div/select[2]/option[7]').click()
+        self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/div/div/select[1]/option[2] ').click()
+        self.driver.find_element_by_xpath('//*[@id="ui-datepicker-div"]/table/tbody/tr[3]/td[2]/a').click()
+
+        # Present Address
+
+        self.driver.find_element_by_xpath('//*[@id="AddressLine1"]').click()
+        self.driver.find_element_by_xpath('//*[@id="AddressLine1"]').send_keys('790')
+
+        self.driver.find_element_by_xpath('//*[@id="AddressLine2"]').click()
+        self.driver.find_element_by_xpath('//*[@id="AddressLine2"]').send_keys('9th Cross')
+
+        self.driver.find_element_by_xpath('//*[@id="AddressLine3"]').click()
+        self.driver.find_element_by_xpath('//*[@id="AddressLine3"]').send_keys('Bull Temple Road')
+
+        self.driver.find_element_by_xpath('//*[@id="AreaLocalitySector"]').click()
+        self.driver.find_element_by_xpath('//*[@id="AreaLocalitySector"]').send_keys('Irulam ')
+
+        select = Select(self.driver.find_element_by_xpath('//*[@id="drpAnganvaadi"]'))
+        ###Temp data
+        select.select_by_index('6')
+        self.driver.find_element_by_xpath('//*[@id="Pincode"]').click()
+        self.driver.find_element_by_xpath('//*[@id="Pincode"]').send_keys('670646')
+
+        # Account Details
+        self.driver.find_element_by_xpath('//*[@id="Bank"]').click()
+        self.driver.find_element_by_xpath('//*[@id="BankIFSCCode"]').click()
+        self.driver.find_element_by_xpath('//*[@id="BankIFSCCode"]').send_keys('SBIN0070192')
+        self.driver.find_element_by_xpath('//*[@id="ifscButton1"]').click()
+
+        self.driver.find_element_by_xpath('//*[@id="BankAccountNo"]').click()
+        self.driver.find_element_by_xpath('//*[@id="BankAccountNo"]').send_keys('701926837947912')
+
+        self.driver.find_element_by_xpath('//*[@id="txtAccountHoldersName"]').click()
+        self.driver.find_element_by_xpath('//*[@id="txtAccountHoldersName"]').send_keys('Jyothi Kundar')
+
+        self.driver.find_element_by_xpath('//*[@id="btnVerify"]').click()
+
+        # Submit
+
+        self.driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/button[1]').click()
+
+        self.driver.switch_to.alert.accept()
+
+        time.sleep(3)
+        # To cancel
+        # driver.find_element_by_xpath('/html/body/div[3]/div[3]/div/button[2]').click()
+
+        # To check if the form is submitted
         element = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[1]/div/h5')
         assert element.text == 'The beneficiary application form is sent for approval'
 
