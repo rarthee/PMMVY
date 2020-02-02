@@ -10,6 +10,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import random
 from random import randint
+import verhoeff
+
+
+
 
 
 class DORMCP(unittest.TestCase):
@@ -614,9 +618,10 @@ class DORMCP(unittest.TestCase):
         self.driver.find_element_by_xpath('//*[@id="txtNameAsInAadhar"]').send_keys('Shamali')
 
         self.driver.find_element_by_xpath('//*[@id="txtAadhar"]').click()
-        # aadno = ''.join(random.choice('99123456789') for i in range(12))
-        # self.driver.find_element_by_xpath('//*[@id="txtAadhar"]').send_keys(aadno)
-        self.driver.find_element_by_xpath('//*[@id="txtAadhar"]').send_keys('919417555234')
+        self.driver.find_element_by_xpath('//*[@id="txtFAadhar"]').click()
+        aadno = verhoeff.VerhoeffChecksum().generateVerhoeff(
+            ''.join(random.choice(string.digits) for i in range(1, 12)))
+        self.driver.find_element_by_xpath('//*[@id="txtAadhar"]').send_keys(aadno)
 
         # Does Husband have aadhar card 'yes'
 
@@ -626,9 +631,9 @@ class DORMCP(unittest.TestCase):
         self.driver.find_element_by_xpath('//*[@id="txtFNameAsInAadhaar"]').click()
         self.driver.find_element_by_xpath('//*[@id="txtFNameAsInAadhaar"]').send_keys('Sagar')
         self.driver.find_element_by_xpath('//*[@id="txtFAadhar"]').click()
-        # aadno = ''.join(random.choice('99123456789') for i in range(12))
-        # self.driver.find_element_by_xpath('//*[@id="txtFAadhar"]').send_keys(aadno)
-        self.driver.find_element_by_xpath('//*[@id="txtFAadhar"]').send_keys('931215223745')
+        aadno = verhoeff.VerhoeffChecksum().generateVerhoeff(
+            ''.join(random.choice(string.digits) for i in range(1, 12)))
+        self.driver.find_element_by_xpath('//*[@id="txtFAadhar"]').send_keys(aadno)
 
         # Is the P.O/ Bank Account Aadhaar Seeded?
         PO_bank_acc = self.driver.find_elements_by_xpath('//*[@id="IsBankAccountAadhaarSeededValue"]')
@@ -729,9 +734,9 @@ class DORMCP(unittest.TestCase):
         self.driver.find_element_by_xpath('//*[@id="txtNameAsInAadhar"]').send_keys('Sumona')
 
         self.driver.find_element_by_xpath('//*[@id="txtAadhar"]').click()
-        # aadno = ''.join(random.choice('99123456789') for i in range(12))
-        # self.driver.find_element_by_xpath('//*[@id="txtAadhar"]').send_keys(aadno)
-        self.driver.find_element_by_xpath('//*[@id="txtAadhar"]').send_keys('230549435787')
+        aadno = verhoeff.VerhoeffChecksum().generateVerhoeff(
+            ''.join(random.choice(string.digits) for i in range(1, 12)))
+        self.driver.find_element_by_xpath('//*[@id="txtAadhar"]').send_keys(aadno)
 
         # Does Husband have aadhar card 'yes'
 
@@ -741,9 +746,9 @@ class DORMCP(unittest.TestCase):
         self.driver.find_element_by_xpath('//*[@id="txtFNameAsInAadhaar"]').click()
         self.driver.find_element_by_xpath('//*[@id="txtFNameAsInAadhaar"]').send_keys('Saketh')
         self.driver.find_element_by_xpath('//*[@id="txtFAadhar"]').click()
-        # aadno = ''.join(random.choice('99123456789') for i in range(12))
-        # self.driver.find_element_by_xpath('//*[@id="txtFAadhar"]').send_keys(aadno)
-        self.driver.find_element_by_xpath('//*[@id="txtFAadhar"]').send_keys('931215223746')
+        aadno = verhoeff.VerhoeffChecksum().generateVerhoeff(
+            ''.join(random.choice(string.digits) for i in range(1, 12)))
+        self.driver.find_element_by_xpath('//*[@id="txtFAadhar"]').send_keys(aadno)
 
         # Is the P.O/ Bank Account Aadhaar Seeded?
         PO_bank_acc = self.driver.find_elements_by_xpath('//*[@id="IsBankAccountAadhaarSeededValue"]')
